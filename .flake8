@@ -1,0 +1,5 @@
+[flake8]
+max-complexity = 10
+exclude = migrations, env, bin, venv, build, .tox, .cache, .git, docs, {{cookiecutter.host_name}}/
+max_line_length = 88
+extend-ignore = F401, F841, C901

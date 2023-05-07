@@ -1,0 +1,6 @@
+psutil
+tox
+pytest
+coverage
+numpy
+pytest-cov
