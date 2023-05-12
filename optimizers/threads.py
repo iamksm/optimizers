@@ -56,8 +56,8 @@ def thread_and_iterate(
 
     # Get system CPU count and average load
     cpu_count = psutil.cpu_count()
-    avg_load = psutil.getloadavg()[0]
-    load_avg_percent = int(avg_load * 100 / cpu_count)
+    five_minute_system_load = psutil.getloadavg()[1] / cpu_count * 100
+    system_load = round(five_minute_system_load, 1)
 
     # Use tools like cProfile to get a exact config for the below times
     wait_time = wait_time  # Average wait time for I/O operations
@@ -75,7 +75,7 @@ def thread_and_iterate(
     optimal_threads = suggested_number_of_threads
 
     # Adjust number of threads based on current system load
-    if load_avg_percent > 80:
+    if system_load > 80:
         optimal_threads = min(4, psutil.cpu_count())
 
     # Ensure the specified threads are not above the default/suggested number of threads
